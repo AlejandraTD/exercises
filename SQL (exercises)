@@ -1,0 +1,52 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [id]
+      ,[name]
+      ,[host_id]
+      ,[host_name]
+      ,[neighbourhood_group]
+      ,[neighbourhood]
+      ,[latitude]
+      ,[longitude]
+      ,[room_type]
+      ,[price]
+      ,[minimum_nights]
+      ,[number_of_reviews]
+      ,[last_review]
+      ,[reviews_per_month]
+      ,[calculated_host_listings_count]
+      ,[availability_365]
+  FROM [prueba].[dbo].[Airbnb listings]
+
+
+SELECT DISTINCT neighbourhood 
+FROM [prueba].[dbo].[Airbnb listings]
+
+SELECT neighbourhood, price, neighbourhood_group
+FROM [prueba].[dbo].[Airbnb listings]
+WHERE  price<= 150 AND neighbourhood_group='Manhattan';
+
+SELECT neighbourhood, price, neighbourhood_group
+FROM [prueba].[dbo].[Airbnb listings]
+WHERE  price<= 20 AND neighbourhood_group='Manhattan';
+
+SELECT availability_365, calculated_host_listings_count, reviews_per_month, last_review, number_of_reviews, minimum_nights, price
+FROM [prueba].[dbo].[Airbnb listings]
+WHERE reviews_per_month IS NULL;
+
+
+SELECT neighbourhood, price, neighbourhood_group, reviews_per_month
+FROM [prueba].[dbo].[Airbnb listings]
+WHERE  price<= 150 AND neighbourhood_group='Manhattan' AND reviews_per_month>=8;
+
+SELECT price, neighbourhood_group, room_type
+FROM [prueba].[dbo].[Airbnb listings]
+WHERE  room_type='Entire home/apt' 
+ORDER BY price;
+
+SELECT AVG(price) AS Average_Price
+FROM [prueba].[dbo].[Airbnb listings];
+
+
+SELECT MIN(price) AS Minimum_Price 
+FROM [prueba].[dbo].[Airbnb listings]
+WHERE  price>=1 
