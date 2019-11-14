@@ -1,0 +1,70 @@
+import pandas as pd
+import seaborn as sb
+import matplotlib.pyplot as plt
+
+df = pd.read_csv ('listings.csv')
+df
+
+
+
+
+df = pd.DataFrame({"room_typenumber" : ["1","2"], "room_type" : ["Private room","Entire home/apt"]})
+df["RT"]=df["room_typenumber"].astype("int") 
+df 
+#this changes from a string to a integer 
+
+
+
+
+sb.countplot('room_type',data=df)
+plt.title('Graphic representation of the cuantity of the type´s rooms')
+plt.annotate('There is a predomination from the entire room type.', xy=(1, 3000), xytext=(2.5, 1500),
+            )
+plt.annotate(' Nevertheless, private room and entire home have a similar demand', xy=(1, 225), xytext=(2.5, 300))
+;
+
+
+
+
+sb.catplot('availability_365','neighbourhood', hue='neighbourhood_group', height=20, data=df)
+
+plt.show()
+
+
+
+
+sb.catplot('neighbourhood_group', 'availability_365', hue='room_type', data=df)
+plt.title('Graphic representation of the neighbourhood group vs. availability and the room type')
+plt.annotate('Crearly it can be seen that there is a predomination form the entire room type. Mainly this happens in Manhattan', xy=(1, 225), xytext=(2.5, 300),
+            arrowprops=dict(facecolor='black', shrink=1),
+            )
+plt.show()
+
+
+
+
+sb.catplot('neighbourhood_group', 'availability_365', data=df)
+plt.title('Graphic representation of the availability and the neighbourhood group')
+
+plt.show()
+
+
+
+
+sb.catplot('availability_365','room_type', data=df)
+plt.title('Graphic representation of the room´s availability vs. the room type') 
+plt.show()
+
+
+
+
+sb.catplot('price','room_type', hue='neighbourhood_group', data=df)
+plt.title('Graphic representation of the price vs. the room type and the neighbourhood group') 
+plt.annotate('It can be seen that the price is almost the same for the 3 "room types", and that it does not matter too much the location.', xy=(1, 2), xytext=(5, 3),
+            arrowprops=dict(facecolor='black', shrink=1),
+            )
+plt.show()
+
+
+
+
